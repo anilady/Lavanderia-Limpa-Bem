@@ -1,0 +1,315 @@
+{% extends "admin/adminbase.html" %}
+{% load humanize %}
+
+{% block bootscript %}
+
+  <!-- Add Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Add jQuery and Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+  <style>
+        @media (min-width: 950px) {
+            .content-wrapper .request-model {
+                display: block;
+            }
+            .content-wrapper .request-table-model {
+                display: none;
+            }
+        }
+
+        @media (max-width: 949px) {
+            .content-wrapper .request-model {
+                display: none;
+            }
+            .content-wrapper .request-table-model {
+                display: block;
+            }
+        }
+    </style>
+
+{% endblock bootscript %}
+
+{% block body %}
+
+<div class="content-wrapper">
+<div class="row">
+        <div class="col-12 col-xl-8 mb-3">
+        <h3 class="font-weight-bold">Bem-vindo(a) {{user|capfirst}}</h3>
+        <h6 class="font-weight-normal mb-0">Todos os sistemas estão funcionando perfeitamente</h6>
+        </div>
+</div>
+<div class="row request-model">
+    <div class="col-md grid-margin transparent">
+    <div class="row">
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-dark-blue">
+            <div class="card-body">
+            <p class="mb-3">Pedidos de hoje</p>
+            <p class="fs-30 mb-2">{{today_request|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-tale">
+            <div class="card-body">
+            <p class="mb-3">Aceites de hoje </p>
+            <p class="fs-30 mb-2">{{today_accept|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-light-blue">
+            <div class="card-body">
+            <p class="mb-3">Progresso de hoje</p>
+            <p class="fs-30 mb-2">{{today_inprogress|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card" style="background:#57cc99; color:white;">
+            <div class="card-body">
+            <p class="mb-3">Total de hoje</p>
+            <p class="fs-30 mb-2">{{today_finish|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-light-danger">
+            <div class="card-body">
+            <p class="mb-3">Cancelamentos de hoje</p>
+            <p class="fs-30 mb-2">{{today_cancle|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-dark-blue">
+            <div class="card-body">
+            <p class="mb-3">Solicitação total</p>
+            <p class="fs-30 mb-2">{{total_request|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-tale">
+            <div class="card-body">
+            <p class="mb-3">Total de pedidos aceitos</p>
+            <p class="fs-30 mb-2">{{total_accept|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-light-blue">
+            <div class="card-body">
+            <p class="mb-3">Total em progresso</p>
+            <p class="fs-30 mb-2">{{total_inprogress|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card" style="background:#57cc99; color:white;">
+            <div class="card-body">
+            <p class="mb-3">Acabamento total</p>
+            <p class="fs-30 mb-2">{{total_finish|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card card-light-danger">
+            <div class="card-body">
+            <p class="mb-3">Total Cancelado</p>
+            <p class="fs-30 mb-2">{{total_cancle|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <h3 class="mt-2">Montante total</h3>
+    <div class="row">
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card" style="background:#ef767a; color:white;">
+            <div class="card-body">
+            <p class="mb-3">Valor não pago</p>
+            <p class="fs-30 mb-2">{{total_unpaid|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card" style="background:#456990; color:white;">
+            <div class="card-body">
+            <p class="mb-3">Valor em dinheiro</p>
+            <p class="fs-30 mb-2">{{total_cash|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-md mb-4 stretch-card transparent">
+        <div class="card" style="background:#49beaa; color:white;">
+            <div class="card-body">
+            <p class="mb-3">Valor cartão</p>
+            <p class="fs-30 mb-2">{{total_online|intcomma}}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="row request-table-model">
+    <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+        <p class="card-title mb-0 d-flex justify-content-between"><span>Tabela de Solicitações</span></p>
+
+        <div class="table-responsive">
+            <table class="table table-hover mt-2">
+            <tbody>
+                <tr>
+                <td style="background: #4747A1; color: #fff;">Pedido de hoje</td>
+                <td style="background: #4747A1;  color: #fff;">{{today_request|intcomma}}</td>
+                <td style="background: #4747A1; color: #fff;">Solicitação total</td>
+                <td style="background: #4747A1;  color: #fff;">{{total_request|intcomma}}</td>
+                </tr>
+                <tr>
+                <td style="background: #7DA0FA; color: #fff;">Aceite de hoje</td>
+                <td style="background: #7DA0FA;  color: #fff;">{{today_accept|intcomma}}</td>
+                <td style="background: #7DA0FA; color: #fff;">Aceitação total</td>
+                <td style="background: #7DA0FA;  color: #fff;">{{total_accept|intcomma}}</td>
+                </tr>
+                <tr>
+                <td style="background: #7978E9; color: #fff;">Progresso de hoje</td>
+                <td style="background: #7978E9;  color: #fff;">{{today_inprogress|intcomma}}</td>
+                <td style="background: #7978E9; color: #fff;">Total em progresso</td>
+                <td style="background: #7978E9;  color: #fff;">{{total_inprogress|intcomma}}</td>
+                </tr>
+                <tr>
+                <td style="background: #57cc99; color: #fff;">Final de hoje</td>
+                <td style="background: #57cc99;  color: #fff;">{{today_finish|intcomma}}</td>
+                <td style="background: #57cc99; color: #fff;">Acabamento total</td>
+                <td style="background: #57cc99;  color: #fff;">{{total_finish|intcomma}}</td>
+                </tr>
+                <tr>
+                <td style="background: #F3797E; color: #fff;">Cancelamento de hoje</td>
+                <td style="background: #F3797E;  color: #fff;">{{today_cancle|intcomma}}</td>
+                <td style="background: #F3797E; color: #fff;">Cancelamento total</td>
+                <td style="background: #F3797E;  color: #fff;">{{total_cancle|intcomma}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+        <p class="card-title mb-0 d-flex justify-content-between"><span>Montante total</span></p>
+
+        <div class="table-responsive">
+            <table class="table table-hover mt-2">
+            <tbody>
+                <tr>
+                <td style="background: #ef767a; color: #fff;">Valor não pago</td>
+                <td style="background: #ef767a;  color: #fff;">{{total_unpaid|intcomma}}</td>
+                </tr>
+                <tr>
+                <td style="background: #456990; color: #fff;">Valor em dinheiro</td>
+                <td style="background: #456990;  color: #fff;">{{total_cash|intcomma}}</td>
+                </tr>
+                <tr>
+                <td style="background: #49beaa; color: #fff;">Valor on-line</td>
+                <td style="background: #49beaa;  color: #fff;">{{total_online|intcomma}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+        <p class="card-title mb-0 d-flex justify-content-between"><span>Detalhes do preço</span><a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#editModal">
+            <i class="ti-marker-alt mr-1"></i>Editar</a></p>
+
+          <!--Edit Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edição de preço</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <!-- Adicione seu formulário de edição ou conteúdo aqui -->
+                    <!-- Example: -->
+                    <form method="post" action="{% url 'priceedit' %}">
+                        {% csrf_token %}
+                        <div class="form-group-sm mb-2">
+                        <label for="editField">Roupas Superiores</label>
+                        <input type="text" class="form-control" id="topwearprice" name="topwearprice" placeholder="Enter value" value="{{price.topwear}}">
+                        </div>
+                        <div class="form-group-sm mb-2">
+                        <label for="editField">Roupas Inferiores</label>
+                        <input type="text" class="form-control" id="bottomwearprice" name="bottomwearprice" placeholder="Enter value" value="{{price.bottomwear}}">
+                        </div>
+                        <div class="form-group-sm mb-2">
+                        <label for="editField">Tecidos Delicados</label>
+                        <input type="text" class="form-control" id="woolenwearprice" name="woolenwearprice" placeholder="Enter value" value="{{price.woolenwear}}">
+                        </div>
+                        <div class="form-group-sm mb-2">
+                        <label for="editField">Cama, mesa e banho</label>
+                        <input type="text" class="form-control" id="woolenwearprice" name="bedbath" placeholder="Enter value" value="{{price.bedbath}}">
+                        </div>
+                        <!-- Adicione mais campos de formulário conforme necessário -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
+                        <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+                </div>
+                </div>
+            </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered mt-2">
+            <thead>
+                <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Roupa superiores</td>
+                <td class="font-weight-bold">{{price.topwear}} R$ </td>
+                </tr>
+                <tr>
+                <td>Roupas Inferiores</td>
+                <td class="font-weight-bold">{{price.bottomwear}} R$ </td>
+                </tr>
+                <tr>
+                <td>Tecidos Delicados</td>
+                <td class="font-weight-bold">{{price.woolenwear}} R$ </td>
+                </tr>
+                <tr>
+                <td>Cama, Mesa e Banho</td>
+                <td class="font-weight-bold">{{price.bedbath}} R$ </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock body %}

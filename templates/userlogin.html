@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block navitems %}
+<div class="collapse navbar-collapse" id="navbarColor01">
+<ul class="navbar-nav me-auto">
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuário</a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="/login/">Entrar</a>
+        <a class="dropdown-item" href="/register/">Inscrever-se</a>
+    </div>
+</li>
+<a class="nav-link text-light" href="{% url 'adminlogin' %}"><span class="material-symbols-outlined">person</span><span class="align-top ms-1">Admin</span></a>
+</ul>
+</div>
+{% endblock navitems %}
+
+{% block body %}
+
+<div class="row justify-content-center mb-5 mt-4">
+    <div class="col-sm-6">
+        <div class="card bg-light mb-3" >
+            <div class="card-header"><i class="fa-solid fa-pen-to-square fa-lg"></i>Login Usuário</div>
+            <div class="card-body">
+            {% if messages %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2 col-6" style="margin:0 auto;" role="alert">
+                <strong>{{messages}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </button>
+            </div>
+            {% endif %}
+
+        <div class="validate-form">
+            <form class="login100-form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-label" for="username">Login</label>
+                    <input class="form-control" name="username" id="username" type="text" placeholder="Digite o nome de usuário" autocomplete="off" required data-msg="Por favor insira seu nome de usuário">
+                </div>
+                <div class="form-group mt-2">
+                    <label class="form-label" for="password">Senha</label>
+                    <input class="form-control" name="password" id="password" type="password" placeholder="Digite a senha" autocomplete="off" required data-msg="Por favor digite sua senha">
+                    <p><small class="text-muted">Esqueceu sua senha?<a href="{% url 'password-reset' %}">Clique aqui</a></small></p>
+                </div>
+                <button class="login100-form-btn btn btn-primary mt-1">Login</button>
+                <p class="mt-1"><small class="text-muted">Criar conta? <a href="/register/">Criar</a></small></p>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock body %}
