@@ -8,6 +8,8 @@ from laundryadmin.models import Price
 from .models import *
 from .helpers import *
 
+# Verificações de preenchimento de pedidos, senha e outros.
+
 class RegView(APIView):
 
     def get_context_data(self, **kwargs):
@@ -18,7 +20,7 @@ class RegView(APIView):
     def post(self, request):
         response = {
             'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
-            'message': 'Something went wrong'
+            'message': 'Algo deu errado'
         }
         try:
             data = request.data
@@ -29,29 +31,29 @@ class RegView(APIView):
             password1 = data.get('password1')
 
             if not (username and email and password and password1):
-                response['message'] = 'Please fill in all fields'
+                response['message'] = 'Por favor preencha todos os campos'
                 response['status'] = status.HTTP_400_BAD_REQUEST
-                raise ValueError('Incomplete data')
+                raise ValueError('Dados incompletos')
 
             if password != password1:
-                response['message'] = 'Passwords do not match'
+                response['message'] = 'As senhas não correspondem'
                 response['status'] = status.HTTP_400_BAD_REQUEST
-                raise ValueError('Passwords do not match')
+                raise ValueError('As senhas não correspondem')
 
-            # Check if the entered email is valid
+            # Verifique se o e-mail inserido é válido
             try:
                 validate_email(email)
             except ValidationError:
-                response['message'] = 'Invalid email format'
+                response['message'] = 'Formato de e-mail inválido'
                 response['status'] = status.HTTP_400_BAD_REQUEST
-                raise ValueError('Invalid email format')
+                raise ValueError('Formato de e-mail inválido')
 
             check_user = User.objects.filter(username=username)
 
             if check_user.exists():
-                response['message'] = 'Username Already Taken'
+                response['message'] = 'Nome de usuário já está em uso'
                 response['status'] = status.HTTP_409_CONFLICT
-                raise ValueError('Username Already Taken')
+                raise ValueError('Nome de usuário já está em uso')
 
             token = generate_random_string(20)
 
@@ -76,7 +78,7 @@ class NewRequestView(APIView):
         user = User.objects.get(username=request.user)
         response = {
             'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
-            'message': 'Something went wrong'
+            'message': 'Algo deu errado'
         }
         try:
             data = request.data
@@ -92,14 +94,14 @@ class NewRequestView(APIView):
             description = data.get('description')
         
             if not (pickup and mobilenumber):
-                response['message'] = 'Please fill all the fields'
+                response['message'] = 'Por favor preencha todos os campos'
                 response['status'] = status.HTTP_400_BAD_REQUEST
-                raise ValueError('Incomplete data')
+                raise ValueError('Dados incompletos')
 
             if (servicetype == 'pickup' and address == ''):
-                response['message'] = 'Please fill the address fields'
+                response['message'] = 'Por favor, preencha os campos de endereço'
                 response['status'] = status.HTTP_400_BAD_REQUEST
-                raise ValueError('Incomplete data')
+                raise ValueError('Dados incompletos')
             
             price = Price.objects.first()
             topwearprice = int(topwear) * price.topwear
@@ -112,7 +114,7 @@ class NewRequestView(APIView):
 
             response = {
                 'status': status.HTTP_201_CREATED,
-                'message': 'User Sent Request Successfully'
+                'message': 'Solicitação enviada pelo usuário com sucesso'
             }
 
         except Exception as e:

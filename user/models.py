@@ -26,7 +26,7 @@ class UserReqeuest(models.Model):
     #service Choices
     SERVICE_CHOICES = [
         ('drop', 'Retirar'),
-        ('pickup', 'House Pickup'),
+        ('pickup', 'Entregar'),
     ]
     service_type = models.CharField(max_length=10, choices=SERVICE_CHOICES)
     address = models.TextField(null=True, blank=True)

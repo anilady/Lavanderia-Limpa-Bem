@@ -3,6 +3,8 @@
 
 {% block body %}
 
+{% comment %} Página de atualizção das informações do pedido {% endcomment %}
+
 <div class="content-wrapper">
 <div class="col-12 grid-margin stretch-card">
 <div class="card">
@@ -50,51 +52,51 @@
         </div>
         <div class="row">
             <div class="form-group col-md-3">
-            <label for="topwear">Roupa Superiores</label>
-            <input type="number" class="form-control" id="topwear" value="{{users.topwear}}" placeholder="Top wear" oninput="updateTopWearPrice()">
+            <label for="topwear">Roupas Superiores</label>
+            <input type="number" class="form-control" id="topwear" value="{{users.topwear}}" placeholder="Roupas Superiores" oninput="updateTopWearPrice()">
             </div>
             <div class="form-group col-md-3">
             <label for="topwearprice">Preço Roupas Superiores </label>
             <input type="hidden" id="topwearpricecurrent" value="{{prices.topwear}}">
-            <input type="number" class="form-control" id="topwearprice" value="{{users.topwearprice}}" placeholder="Top wear Price">
+            <input type="number" class="form-control" id="topwearprice" value="{{users.topwearprice}}" placeholder="Preço Roupas Superiores">
             </div>
             <div class="form-group col-md-3">
             <label for="bottomwear">Roupas Inferiores</label>
-            <input type="number" class="form-control" id="bottomwear" value="{{users.bottomwear}}" placeholder="Bottom wear" oninput="updateBottomWearPrice()">
+            <input type="number" class="form-control" id="bottomwear" value="{{users.bottomwear}}" placeholder="Roupas Inferiores" oninput="updateBottomWearPrice()">
             </div>
             <div class="form-group col-md-3">
             <label for="bottomwearprice">Preço Roupas Inferiores</label>
             <input type="hidden" id="bottomwearpricecurrent" value="{{prices.bottomwear}}">
-            <input type="number" class="form-control" id="bottomwearprice" value="{{users.bottomwearprice}}" placeholder="Bottom wear Price">
+            <input type="number" class="form-control" id="bottomwearprice" value="{{users.bottomwearprice}}" placeholder="Preço Roupas Inferiores">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-3">
             <label for="woolenwear">Tecidos Delicados</label>
-            <input type="number" class="form-control" id="woolenwear" value="{{users.woolenwear}}" placeholder="Woolen wear" oninput="updateWoolenWearPrice()">
+            <input type="number" class="form-control" id="woolenwear" value="{{users.woolenwear}}" placeholder="Tecidos Delicados" oninput="updateWoolenWearPrice()">
             </div>
             <div class="form-group col-md-3">
             <label for="woolenwearprice">Preço Tecidos Delicados</label>
             <input type="hidden" id="woolenwearpricecurrent" value="{{prices.woolenwear}}">
-            <input type="number" class="form-control" id="woolenwearprice" value="{{users.woolenwearprice}}" placeholder="Woolen wear Price">
+            <input type="number" class="form-control" id="woolenwearprice" value="{{users.woolenwearprice}}" placeholder="Preço Tecidos Delicados">
             </div>
             <div class="form-group col-md-3">
             <label for="othercloth">Cama, Mesa e Banho</label>
-            <input type="number" class="form-control" id="othercloth" value="{{users.otherclothes}}" placeholder="othercloth">
+            <input type="number" class="form-control" id="othercloth" value="{{users.otherclothes}}" placeholder="Cama, Mesa e Banho">
             </div>
             <div class="form-group col-md-3">
-            <label for="otherclothprice">Preços de Cama, Mesa e Banho</label>
-            <input type="number" class="form-control" id="otherclothprice" value="{{users.otherclothesprice}}" placeholder="othercloth Price" oninput="updateTotalPrice()">
+            <label for="otherclothprice">Preço de Cama, Mesa e Banho</label>
+            <input type="number" class="form-control" id="otherclothprice" value="{{users.otherclothesprice}}" placeholder="Preço Cama, Mesa e Banho" oninput="updateTotalPrice()">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-3">
             <label for="mobilenumber">Número do celular</label>
-            <input type="number" class="form-control" id="mobilenumber" value="{{users.contact_person}}" placeholder="mobilenumber">
+            <input type="number" class="form-control" id="mobilenumber" value="{{users.contact_person}}" placeholder="Npumero do celular">
             </div>
             <div class="form-group col-md-3">
             <label for="totalprice">Preço total</label>
-            <input type="number" class="form-control" id="totalprice" value="{{users.totalprice}}" placeholder="Total Price">
+            <input type="number" class="form-control" id="totalprice" value="{{users.totalprice}}" placeholder="Preço total">
             </div>
             <div class="form-group col-md-3">
                 <label for="description">Descrição</label>
@@ -165,7 +167,7 @@
             console.log(response)
             if(response.status == 201){
                 window.location.href = '/admin-site/all-req/';
-                alert("Update Successfully");
+                alert("Atualização realizada com sucesso");
             }else{
                 alert(response.message)
             }

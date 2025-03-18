@@ -15,7 +15,7 @@
     } else if (type === 'title-and-text') {
       swal({
         title: 'Read the alert!',
-        text: 'Click OK to close this alert',
+        text: 'Clique em OK para fechar este alerta',
         button: {
           text: "OK",
           value: true,
@@ -26,8 +26,8 @@
 
     } else if (type === 'success-message') {
       swal({
-        title: 'Congratulations!',
-        text: 'You entered the correct answer',
+        title: 'Parabéns!',
+        text: 'Você digitou a resposta correta',
         icon: 'success',
         button: {
           text: "Continue",
@@ -39,8 +39,8 @@
 
     } else if (type === 'auto-close') {
       swal({
-        title: 'Auto close alert!',
-        text: 'I will close in 2 seconds.',
+        title: 'Alerta de fechamento automático!',
+        text: 'Encerrarei em 2 segundos.',
         timer: 2000,
         button: false
       }).then(
@@ -48,14 +48,14 @@
         // handling the promise rejection
         function(dismiss) {
           if (dismiss === 'timer') {
-            console.log('I was closed by the timer')
+            console.log('Eu estava fechado pelo cronômetro')
           }
         }
       )
     } else if (type === 'warning-message-and-cancel') {
       swal({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Tem certeza?',
+        text: "Você não poderá reverter isso!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3f51b5',
@@ -63,7 +63,7 @@
         confirmButtonText: 'Great ',
         buttons: {
           cancel: {
-            text: "Cancel",
+            text: "Cancelar",
             value: null,
             visible: true,
             className: "btn btn-danger",
@@ -84,7 +84,7 @@
         content: {
           element: "input",
           attributes: {
-            placeholder: "Type your password",
+            placeholder: "Digite sua senha",
             type: "password",
             class: 'form-control'
           },

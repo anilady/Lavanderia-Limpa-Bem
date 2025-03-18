@@ -78,12 +78,12 @@ class UpdateCompany(APIView):
             if emailPassword:
                 company.password = emailPassword
             if companyLogo:
-                # Save the logo file to the 'company_logos' directory
+                # Salve o arquivo do logotipo no diretório 'company_logos'
                 fs = FileSystemStorage(location='media/company_logos/')
                 filename = fs.save(companyLogo.name, companyLogo)
                 company.logo = 'company_logos/' + filename
             if companyFavIcon:
-                # Save the favicon file to the 'company_fav_icons' directory
+                # Salve o arquivo favicon no diretório 'company_fav_icons'
                 fs = FileSystemStorage(location='media/company_fav_icons/')
                 filename = fs.save(companyFavIcon.name, companyFavIcon)
                 company.fav_icon = 'company_fav_icons/' + filename
@@ -92,7 +92,7 @@ class UpdateCompany(APIView):
 
             response = {
                 'status': 201,
-                'message': 'Company profile updated successfully.',
+                'message': 'Perfil da empresa atualizado com sucesso.',
             }
 
         except Exception as e:

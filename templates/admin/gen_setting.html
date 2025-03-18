@@ -2,6 +2,8 @@
 
 {% block body %}
 
+{% comment %} Configuração de geração da página, alteração de detalhes da empresa, como de logo e nome {% endcomment %}
+
 <div class="content-wrapper">
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
@@ -88,7 +90,7 @@
         console.log(response)
         if (response.status == 201) {
             window.location.href = '/admin-site/gen-setting/';
-            alert("Update Company Profile Successfully");
+            alert("Perfil da empresa atualizado com sucesso");
         } else {
             alert(response.message)
         }

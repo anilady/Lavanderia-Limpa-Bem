@@ -23,10 +23,10 @@ def userlogin(request):
                 login(request, user)
                 return redirect('index')
             else:
-                error_message = "User is not verified. Please verify your account."
+                error_message = "O usuário não foi verificado. Por favor, verifique sua conta."
                 return render(request, 'userlogin.html', {'messages': error_message})
         else:
-            error_message = "Invalid username or password"
+            error_message = "Nome de usuário ou senha inválidos"
             return render(request, 'userlogin.html', {'messages': error_message})
     else:
         return render(request, 'userlogin.html')
@@ -90,13 +90,13 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, 'Password changed successfully.')
+            messages.success(request, 'Senha alterada com sucesso.')
             return redirect('user_profile')
         else:
             if 'old_password' in form.errors:
-                messages.error(request, 'Enter Current Password Properly.')
+                messages.error(request, 'Digite a senha atual corretamente.')
             else:
-                messages.error(request, 'New passwords Do Not Match.')
+                messages.error(request, 'Novas senhas não correspondem')
 
     else:
         form = PasswordChangeForm(request.user)
@@ -125,7 +125,7 @@ class CustomPasswordResetView(PasswordResetView):
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            messages.error(self.request, 'Email address not found.')
+            messages.error(self.request, 'Endereço de e-mail não encontrado.')
             return redirect(reverse_lazy('password-reset'))
 
         return super().form_valid(form)

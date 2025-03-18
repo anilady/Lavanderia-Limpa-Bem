@@ -9,9 +9,9 @@
           right: 'month,basicWeek,basicDay'
         },
         defaultDate: '2017-07-12',
-        navLinks: true, // can click day/week names to navigate views
+        navLinks: true, // pode clicar nos nomes dos dias/semanas para navegar nas visualizações
         editable: true,
-        eventLimit: true, // allow "more" link when too many events
+        eventLimit: true, // permitir link "mais" quando houver muitos eventos
         events: [{
             title: 'All Day Event',
             start: '2017-07-08'

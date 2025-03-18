@@ -93,30 +93,13 @@
                                         </td>
                                         <td>{{user.contact_person}}</td>
                                         <td><div class="badge {% if user.payment == 'Unpaid' %}badge-outline-warning{% elif user.payment == 'Cash' %}badge-outline-dark{% else %}badge-outline-info{% endif %}">{{user.payment|capfirst}}</div></td>
-                                        <td><a class="badge badge-outline-dark text-dark" href="{% url 'req_all_update' user.uuid %}"><i class="ti-marker-alt mr-1"></i>Update</a></td>
+                                        <td><a class="badge badge-outline-dark text-dark" href="{% url 'req_all_update' user.uuid %}"><i class="ti-marker-alt mr-1"></i>Atualizar</a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    <!-- Página de navegação comentada -->
-                    {% comment %}
-                    <div class="pagination mt-3">
-                        {% if page_obj.has_previous %}
-                            <a href="?page=1" class="page-link">&laquo; First</a>
-                        {% endif %}
-                        {% for num in page_obj.paginator.page_range %}
-                            {% if page_obj.number == num %}
-                                <a href="?page={{ num }}" class="page-link page-link-active">{{ num }}</a>
-                            {% else %}
-                                <a href="?page={{ num }}" class="page-link">{{ num }}</a>
-                            {% endif %}
-                        {% endfor %}
-                        {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a>
-                        {% endif %}
-                    </div>
-                    {% endcomment %}
+
                 </div>
             </div>
         </div>
