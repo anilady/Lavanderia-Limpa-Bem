@@ -61,7 +61,7 @@ class RegView(APIView):
             user_obj.set_password(password)
             user_obj.save()
             response['status'] = status.HTTP_201_CREATED
-            response['message'] = 'User Created'
+            response['message'] = 'Usuário criado'
 
             Profile.objects.create(user=user_obj, token=token)
 

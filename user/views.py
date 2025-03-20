@@ -109,6 +109,7 @@ def change_password(request):
 
 
 
+#reset via email
 
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'users/password_reset.html'

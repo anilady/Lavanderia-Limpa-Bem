@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+# models são responsáveis por definir a estrutura e o comportamento dos dados em uma aplicação. 
+# Eles representam tabelas no banco de dados e controlam aspectos da aplicação.
 
-
-# Create your models here.
+# Modulos.
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -13,7 +14,7 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
 
-
+#Este modelo UserRequest representa uma solicitação feita por um usuário para um serviço
 class UserReqeuest(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -23,11 +24,12 @@ class UserReqeuest(models.Model):
     woolenwear = models.PositiveIntegerField(default=0)
     otherclothes = models.PositiveIntegerField(default=0)
 
-    #service Choices
+    #escolhas de serviço
     SERVICE_CHOICES = [
         ('drop', 'Retirar'),
         ('pickup', 'Entregar'),
     ]
+    #status do pedido
     service_type = models.CharField(max_length=10, choices=SERVICE_CHOICES)
     address = models.TextField(null=True, blank=True)
     contact_person = models.CharField(max_length=20)

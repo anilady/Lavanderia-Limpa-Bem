@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
-# Create your views here.
+# Criação das views.
 
 today = date.today()
 
@@ -46,7 +46,7 @@ def home(request):
     total_finish = UserReqeuest.objects.filter(progress = 'Finish').count()
     total_cancle = UserReqeuest.objects.filter(progress = 'Cancle').count()
     price = Price.objects.first()
-    total_unpaids = UserReqeuest.objects.filter(payment='Unpaid')
+    total_unpaids = UserReqeuest.objects.filter(payment='não pago')
     total_unpaid = 0
     for user in total_unpaids:
         if user.progress != 'Cancle':

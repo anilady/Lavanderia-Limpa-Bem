@@ -11,13 +11,13 @@ class Update_req(APIView):
     def post(self, request):
         response = {
             'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
-            'message': 'Something went wrong'
+            'message': 'Algo deu errado'
         }
         try:
             data = request.data
             uuid = data.get('uuid')
             if not uuid:
-                response['message'] = 'User Request ID is missing'
+                response['message'] = 'O ID da solicitação do usuário está faltando'
                 response['status'] = status.HTTP_400_BAD_REQUEST
                 return Response(response, status=response['status'])
 
@@ -43,10 +43,10 @@ class Update_req(APIView):
             user_request.save()
 
             response['status'] = status.HTTP_201_CREATED
-            response['message'] = 'User Request updated successfully'
+            response['message'] = 'Solicitação do usuário atualizada com sucesso'
 
         except UserReqeuest.DoesNotExist:
-            response['message'] = 'User Request with the given ID does not exist'
+            response['message'] = 'A solicitação do usuário com o ID fornecido não existe'
             response['status'] = status.HTTP_404_NOT_FOUND
         except Exception as e:
             response['message'] = 'Error: {}'.format(str(e))
@@ -59,7 +59,7 @@ class UpdateCompany(APIView):
     def post(self, request):
         response = {
             'status': 500,
-            'message': 'Something went wrong',
+            'message': 'Algo deu errado',
         }
         try:
             data = request.POST
